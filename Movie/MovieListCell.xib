@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="112" id="Jcu-bq-n1z" customClass="MovieListCell" customModule="Movie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jcu-bq-n1z" id="NbG-7Q-1dG">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="nrO-ch-xn7">
+                        <rect key="frame" x="8" y="8" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="VyX-Ec-kUJ"/>
+                            <constraint firstAttribute="width" constant="60" id="ctl-QA-kbW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lc-DO-W0j">
+                        <rect key="frame" x="76" y="8" width="291" height="25"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4p-rW-X5O">
+                        <rect key="frame" x="76" y="37" width="34" height="20"/>
+                        <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNa-Ff-Gc4">
+                        <rect key="frame" x="76" y="61" width="291" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4lc-DO-W0j" firstAttribute="top" secondItem="nrO-ch-xn7" secondAttribute="top" id="4qT-lh-ThF"/>
+                    <constraint firstAttribute="trailing" secondItem="4lc-DO-W0j" secondAttribute="trailing" constant="8" id="N2C-3o-9aG"/>
+                    <constraint firstItem="4lc-DO-W0j" firstAttribute="leading" secondItem="nrO-ch-xn7" secondAttribute="trailing" constant="8" id="TPj-30-31w"/>
+                    <constraint firstItem="nrO-ch-xn7" firstAttribute="top" secondItem="NbG-7Q-1dG" secondAttribute="top" constant="8" id="UJ1-lV-w3G"/>
+                    <constraint firstItem="w4p-rW-X5O" firstAttribute="top" secondItem="4lc-DO-W0j" secondAttribute="bottom" constant="4" id="VfC-UI-xBg"/>
+                    <constraint firstItem="zNa-Ff-Gc4" firstAttribute="leading" secondItem="w4p-rW-X5O" secondAttribute="leading" id="e4Y-jI-mtA"/>
+                    <constraint firstItem="zNa-Ff-Gc4" firstAttribute="trailing" secondItem="4lc-DO-W0j" secondAttribute="trailing" id="fnU-qp-3ja"/>
+                    <constraint firstItem="zNa-Ff-Gc4" firstAttribute="top" secondItem="w4p-rW-X5O" secondAttribute="bottom" constant="4" id="hPa-xc-tjh"/>
+                    <constraint firstItem="w4p-rW-X5O" firstAttribute="leading" secondItem="4lc-DO-W0j" secondAttribute="leading" id="hg7-FG-wIw"/>
+                    <constraint firstItem="nrO-ch-xn7" firstAttribute="leading" secondItem="NbG-7Q-1dG" secondAttribute="leading" constant="8" id="o3W-I6-3Wr"/>
+                    <constraint firstAttribute="bottom" secondItem="zNa-Ff-Gc4" secondAttribute="bottom" priority="250" constant="8" id="oau-xN-fFQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="MovieImageView" destination="nrO-ch-xn7" id="KSe-lG-Sry"/>
+                <outlet property="MovieOverView" destination="zNa-Ff-Gc4" id="wQz-1q-5sC"/>
+                <outlet property="MovieReleaseDate" destination="w4p-rW-X5O" id="0N9-Cn-vIg"/>
+                <outlet property="MovieTitle" destination="4lc-DO-W0j" id="TRn-eA-kOc"/>
+            </connections>
+            <point key="canvasLocation" x="-365" y="-414"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="25" height="25"/>
+    </resources>
+</document>
