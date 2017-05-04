@@ -92,7 +92,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         }
         self.view.isUserInteractionEnabled = false;
         self.loader.startAnimating()
-        CommunicationManager().getMovieResults(searchString: "Batman", existingCount: entries.count) { (responseData) in
+        CommunicationManager().getMovieResults(searchString: searchString, existingCount: entries.count) { (responseData) in
             if let result = (responseData!["results"] as? NSArray) {
                 if result.count > 0 {
                     for dict in result {
