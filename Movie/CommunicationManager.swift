@@ -33,8 +33,9 @@ class CommunicationManager: NSObject {
             }
         }
     }
-    func getMovieResults(searchString:String, existingCount: Int, callBack:@escaping(_ responseData: NSDictionary?)->()){
-        let request = NSMutableURLRequest(url: URL(string: WebServiceType.searchMovie.getRequestURLByType(appendString: searchString+"&page=\((existingCount/NO_OF_ROW_PER_PAGE)+1)"))!)
+    func getMovieResults(searchString:String, pageNo: Int,totalPage:Int, callBack:@escaping(_ responseData: NSDictionary?)->()){
+        let pageString = (pageNo == 0) ? "" : "&page=\(pageNo)"
+        let request = NSMutableURLRequest(url: URL(string: WebServiceType.searchMovie.getRequestURLByType(appendString: searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)! + pageString))!)
         // page will be count automatically as we are using window of 20 records per page "NO_OF_ROW_PER_PAGE"
         request.httpMethod = "GET"
         request.addValue("application/json",forHTTPHeaderField: "Content-Type")

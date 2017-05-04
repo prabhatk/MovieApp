@@ -16,12 +16,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     @IBOutlet weak var ErrorLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var suggestionTableView: UITableView!
     
+    
     @IBOutlet weak var SearchBar: UISearchBar!
     var imageDownloadsInProgress = NSMutableDictionary() // tracking downloading items.
     var entries : NSMutableArray = NSMutableArray() // record array
     var suggestionArray = NSMutableArray() // getting suggestion array from nsuser default.
     let refreshControl = UIRefreshControl() // pull to refresh
     var searchString : String = "" // it will keep track if we are already searching for the keywords.
+    var totalPage = 0;
+    var currentPage = 0;
     
     let appDelegate  = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
@@ -81,7 +84,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             self.view.isUserInteractionEnabled = true
         }
         else {
-            searchMovieWith(name: searchString)
+            self.shouldAnalyzeAndPerfromSearch()
         }
     }
     //search movie with the given name if name of the search string is same than conutn will continue like 0..20, 20.. 40 ...etc
@@ -91,9 +94,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             return
         }
         self.view.isUserInteractionEnabled = false;
-        self.loader.startAnimating()
-        CommunicationManager().getMovieResults(searchString: searchString, existingCount: entries.count) { (responseData) in
+        
+        CommunicationManager().getMovieResults(searchString: searchString, pageNo: currentPage, totalPage: totalPage) { (responseData) in
             if let result = (responseData!["results"] as? NSArray) {
+                self.totalPage = (((responseData!).object(forKey: total_pages) as? NSNumber)?.intValue)!
+                self.currentPage = (((responseData!).object(forKey: page) as? NSNumber)?.intValue)!
                 if result.count > 0 {
                     for dict in result {
                         let feedData : NSDictionary = dict as! NSDictionary
@@ -178,11 +183,24 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             searchString = (suggestionArray[indexPath.row] as? String)!
             if appDelegate.reachability.isReachable {
                 SearchBar.text = searchString
-                searchMovieWith(name: searchString)
+                self.totalPage = 0
+                self.currentPage = 0
+               shouldAnalyzeAndPerfromSearch()
             }
         }
     }
-    
+    func shouldAnalyzeAndPerfromSearch(){
+        if(currentPage == 0 && totalPage == 0){
+            searchMovieWith(name: searchString)
+        }
+        else if (currentPage <= totalPage) {
+            currentPage = currentPage + 1
+            searchMovieWith(name: searchString)
+        }
+        else {
+            refreshControl.endRefreshing()
+        }
+    }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         suggestionTableView.reloadData()
@@ -193,7 +211,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             self.entries.removeAllObjects()
             self.imageDownloadsInProgress.removeAllObjects()
             //self.resultList.removeAllObjects()
-            searchMovieWith(name: searchString)
+            self.totalPage = 0
+            self.currentPage = 0
+            shouldAnalyzeAndPerfromSearch()
            
         }
         if(searchBar.isFirstResponder){
